@@ -2,4 +2,7 @@
     <string name="app_name">Lab 1</string>
     <string name="i_am_rich">I am Rich</string>
     <string name="percent_holder">%s</string>
+    <string name="randomize">Randomize</string>
+    <string name="random_text">Random text</string>
+    <string name="random_movie">Random movie</string>
 </resources>

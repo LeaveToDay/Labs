@@ -1,50 +1,61 @@
 package com.staynight.lab1
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.CountDownTimer
-import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.content.res.AppCompatResources
 import com.staynight.lab1.databinding.ActivityMainBinding
+import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
 
     private var binding: ActivityMainBinding? = null
+    private val randomText = listOf(
+        "Пробуждение",
+        "Их собственная лига",
+        "Бронкская история",
+        "Ангелы у кромки поля",
+        "Время убивать",
+        "Амистад",
+        "Анаконда",
+        "Прохладное сухое место",
+        "Почти знаменит",
+        "Анализируй это"
+    )
+
+    private val randomImages = listOf(
+        R.drawable.m1,
+        R.drawable.m2,
+        R.drawable.m3,
+        R.drawable.m4,
+        R.drawable.m5,
+        R.drawable.m6,
+        R.drawable.m7,
+        R.drawable.m8,
+        R.drawable.m9,
+        R.drawable.m10,
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding?.root)
         bindView()
-        initTimer()
+        setRandomMovie()
     }
 
     private fun bindView() {
         binding?.apply {
-            progressBar.max = 100
-        }
-    }
-
-    private fun initTimer() {
-        binding?.apply {
-            val timer = object : CountDownTimer(10000, 100) {
-                override fun onTick(p0: Long) {
-                    tvPercent.text = "${(10000 - p0) / 100}%"
-                    progressBar.progress = ((10000 - p0) / 100).toInt()
-                }
-                override fun onFinish() {
-                    flProgress.hide()
-                    flIAmRich.show()
-                }
+            btnRandom.setOnClickListener {
+                setRandomMovie()
             }
-            timer.start()
         }
     }
 
-    fun View.hide() {
-        this.visibility = View.GONE
-    }
-
-    fun View.show() {
-        this.visibility = View.VISIBLE
+    private fun setRandomMovie(){
+        binding?.apply {
+            val randomInt = Random.nextInt(10)
+            ivRandom.setImageDrawable(AppCompatResources.getDrawable(root.context, randomImages[randomInt]))
+            tvRandom.text = randomText[randomInt]
+        }
     }
 }
