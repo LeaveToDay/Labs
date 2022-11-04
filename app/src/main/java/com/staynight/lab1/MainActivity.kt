@@ -1,61 +1,78 @@
 package com.staynight.lab1
 
+import android.media.MediaPlayer
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.content.res.AppCompatResources
-import com.staynight.lab1.databinding.ActivityMainBinding
-import kotlin.random.Random
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 
-class MainActivity : AppCompatActivity() {
-
-    private var binding: ActivityMainBinding? = null
-    private val randomText = listOf(
-        "Пробуждение",
-        "Их собственная лига",
-        "Бронкская история",
-        "Ангелы у кромки поля",
-        "Время убивать",
-        "Амистад",
-        "Анаконда",
-        "Прохладное сухое место",
-        "Почти знаменит",
-        "Анализируй это"
-    )
-
-    private val randomImages = listOf(
-        R.drawable.m1,
-        R.drawable.m2,
-        R.drawable.m3,
-        R.drawable.m4,
-        R.drawable.m5,
-        R.drawable.m6,
-        R.drawable.m7,
-        R.drawable.m8,
-        R.drawable.m9,
-        R.drawable.m10,
-    )
+class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding?.root)
-        bindView()
-        setRandomMovie()
-    }
-
-    private fun bindView() {
-        binding?.apply {
-            btnRandom.setOnClickListener {
-                setRandomMovie()
-            }
+        setContent {
+            InitScreen()
         }
     }
+}
 
-    private fun setRandomMovie(){
-        binding?.apply {
-            val randomInt = Random.nextInt(10)
-            ivRandom.setImageDrawable(AppCompatResources.getDrawable(root.context, randomImages[randomInt]))
-            tvRandom.text = randomText[randomInt]
-        }
+@Composable
+fun InitScreen() {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .fillMaxHeight(),
+        verticalArrangement = Arrangement.SpaceAround
+    ) {
+        MusicButton(letter = "A", color = R.color.violet, modifier = Modifier.weight(1f))
+        MusicButton(letter = "B", color = R.color.indigo, modifier = Modifier.weight(1f))
+        MusicButton(letter = "C", color = R.color.blue, modifier = Modifier.weight(1f))
+        MusicButton(letter = "D", color = R.color.green, modifier = Modifier.weight(1f))
+        MusicButton(letter = "E", color = R.color.yellow, modifier = Modifier.weight(1f))
+        MusicButton(letter = "F", color = R.color.orange, modifier = Modifier.weight(1f))
+        MusicButton(letter = "G", color = R.color.red, modifier = Modifier.weight(1f))
+    }
+}
+
+private var buttonPadding = 17
+
+@Composable
+fun MusicButton(
+    modifier: Modifier = Modifier, letter: String, color: Int
+) {
+    buttonPadding += 3
+    val context = LocalContext.current
+    val player = MediaPlayer.create(
+        context, context.resources.getIdentifier(letter.lowercase(), "raw", context.packageName)
+    )
+    Button(
+        onClick = {
+            player.start()
+        }, colors = ButtonDefaults.buttonColors(
+            backgroundColor = colorResource(id = color)
+        ), modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = buttonPadding.dp)
+            .padding(vertical = 5.dp)
+    ) {
+        Text(
+            text = letter,
+            modifier.align(Alignment.CenterVertically),
+            textAlign = TextAlign.Center,
+            style = TextStyle(
+                color = colorResource(id = R.color.white)
+            )
+        )
     }
 }
