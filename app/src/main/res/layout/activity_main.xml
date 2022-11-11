@@ -4,63 +4,161 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#E2F5F0"
     tools:context=".MainActivity">
 
-    <FrameLayout
-        android:id="@+id/fl_progress"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_gravity="center"
-            android:max="100"
-            android:progressDrawable="@drawable/progress_bar_drawable"
-            android:rotation="-90" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/tv_percent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
-            android:textSize="35sp"
-            android:layout_gravity="center"/>
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="15dp"
+            android:text="@string/enter_bill_total"
+            android:textSize="25sp" />
 
-    </FrameLayout>
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:background="@null"
+            android:hint="@string/e_g_123_56"
+            android:inputType="numberDecimal"
+            android:maxLines="1"
+            android:textAlignment="center"
+            android:textColor="#72C1A2"
+            android:textSize="35sp" />
 
-    <FrameLayout
-        android:id="@+id/fl_i_am_rich"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:background="#E2F5F0"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="15dp"
+                android:text="@string/select_tips"
+                android:textSize="25sp" />
+
+            <RadioGroup
+                android:id="@+id/rg_tips"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/rbtn_1"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:background="@drawable/bg_radio_tips"
+                    android:button="@null"
+                    android:padding="5dp"
+                    android:text="@string/_0"
+                    android:textAlignment="center"
+                    android:textColor="@color/color_tips"
+                    android:textSize="35sp" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/rbtn_2"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:background="@drawable/bg_radio_tips"
+                    android:button="@null"
+                    android:checked="true"
+                    android:padding="5dp"
+                    android:text="@string/_10"
+                    android:textAlignment="center"
+                    android:textColor="@color/color_tips"
+                    android:textSize="35sp" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/rbtn_3"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:background="@drawable/bg_radio_tips"
+                    android:button="@null"
+                    android:padding="5dp"
+                    android:text="@string/_20"
+                    android:textAlignment="center"
+                    android:textColor="@color/color_tips"
+                    android:textSize="35sp" />
+
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="15dp"
+                android:text="@string/choose_split"
+                android:textSize="25sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/tv_split_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="80dp"
+                    android:text="@string/_2"
+                    android:textColor="#72C1A2"
+                    android:textSize="35sp" />
+
+                <ImageButton
+                    android:id="@+id/btn_minus"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/bg_plus_minus"
+                    android:src="@drawable/ic_baseline_remove_24" />
+
+                <ImageButton
+                    android:id="@+id/btn_plus"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/bg_plus_minus"
+                    android:src="@drawable/ic_baseline_add_24" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_calculate"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="80dp"
+        android:layout_marginBottom="50dp"
+        android:background="#72c1a2"
+        android:text="@string/calculate"
+        android:textColor="@color/white"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:visibility="gone">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/i_am_rich"
-            android:textSize="35sp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="200dp"
-            android:textColor="@color/teal_700"
-            android:textStyle="bold"/>
-
-        <ImageView
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:src="@drawable/diamond"
-            android:layout_gravity="center"/>
-
-    </FrameLayout>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

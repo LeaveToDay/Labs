@@ -2,4 +2,18 @@
     <string name="app_name">Lab 1</string>
     <string name="i_am_rich">I am Rich</string>
     <string name="percent_holder">%s</string>
+
+    <string name="split_template">Split between %s people, with %s percents tip.</string>
+    <string name="enter_bill_total">Enter bill total</string>
+    <string name="e_g_123_56">e.g. 123.56</string>
+    <string name="select_tips">Select tips</string>
+    <string name="_0">0%</string>
+    <string name="_10">10%</string>
+    <string name="_20">20%</string>
+    <string name="choose_split">Choose split</string>
+    <string name="_2">2</string>
+    <string name="calculate">Calculate</string>
+    <string name="_22_00">22.00</string>
+    <string name="total_per_person">Total per person</string>
+    <string name="recalculate">Recalculate</string>
 </resources>
